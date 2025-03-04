@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Layout from "./components/Layout";
+import {Route, Routes } from "react-router-dom";
+import Class11neet from "./components/Class11neet";
+import Class12jee from "./components/Class12jee";
+import Class11jee from "./components/Class11jee";
+import Class12neet from "./components/Class12neet";
+import NeetSection from "./components/NeetSection";
+import JeeSection from "./components/JeeSection";
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <Routes>
+        <Route path='/' element={<Layout/>}>
+
+          <Route path="/neet" element={<NeetSection/>}>
+            <Route path='online-coaching-class-11' element={<Class11neet/>} />
+            <Route path='online-coaching-class-12' element={<Class12neet/>} />
+          </Route>
+
+          <Route path="/jee" element={<JeeSection/>}>
+            <Route path='online-coaching-class-11' element={<Class11jee/>} />
+            <Route path='online-coaching-class-12' element={<Class12jee/>} />
+          </Route>
+        </Route>
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
